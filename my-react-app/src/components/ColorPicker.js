@@ -13,13 +13,23 @@ export class ColorPicker extends Component {
     }
 
     render() {
+
+        const { activeOptionIdx } = this.state
+        const { label } = ColorPikerOptions[activeOptionIdx];
+
         return (
             <div className='ColorPicker'>
                 <h1 className='ColorPicker-title'>Color Picer</h1>
+                <h3>Color: {label}</h3>
                 <div>
                     {ColorPikerOptions.map(({ label, color }, index) => (
-                        <button className={`ColorPicker-option ${index === this.state.activeOptionIdx ? 'ColorPicker-option-ative' : ''}`} key={label}
-                            style={{ backgroundColor: color }} onClick={() => this.setActiveIdx(index)}>
+
+                        <button className={`ColorPicker-option 
+                            ${index === activeOptionIdx &&
+                                'ColorPicker-option-ative'}`}
+                                    key={label}
+                            style={{ backgroundColor: color }}
+                            onClick={() => this.setActiveIdx(index)}>
                         
                         </button>
                     ))}
