@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import { ColorPikerOptions } from '../App.js';
-// import './ColorPicker.css';
+import { ColorPickerOptions } from '../App.js';
 
 export class ColorPicker extends Component {
 
@@ -15,14 +14,14 @@ export class ColorPicker extends Component {
     render() {
 
         const { activeOptionIdx } = this.state
-        const { label } = ColorPikerOptions[activeOptionIdx];
+        const { label } = ColorPickerOptions[activeOptionIdx];
 
         return (
             <div className='ColorPicker'>
-                <h1 className='ColorPicker-title'>Color Picer</h1>
+                <h1 className='ColorPicker-title'>Color Picker</h1>
                 <h3>Color: {label}</h3>
                 <div>
-                    {ColorPikerOptions.map(({ label, color }, index) => (
+                    {ColorPickerOptions.map(({ label, color }, index) => (
 
                         <button className={`ColorPicker-option 
                             ${index === activeOptionIdx &&
@@ -30,7 +29,6 @@ export class ColorPicker extends Component {
                                     key={label}
                             style={{ backgroundColor: color }}
                             onClick={() => this.setActiveIdx(index)}>
-                        
                         </button>
                     ))}
                     
