@@ -1,8 +1,9 @@
 import './App.css';
 import './components/ColorPicker.css';
 import React, { Component } from 'react';
-import TodoList from './components/TodoList.js';
-import TodoListJson from '../src/components/TodoList.json';
+import { Forms } from './components/form/Forms';
+// import TodoList from './components/TodoList.js';
+// import TodoListJson from '../src/components/TodoList.json';
 
 // import { Dropdawn } from './components/Dropdawn.js';
 // import { ColorPicker } from './components/ColorPicker';
@@ -50,33 +51,45 @@ import TodoListJson from '../src/components/TodoList.json';
 // }
 
 
-class App extends Component {
-  state = {
-     todos: TodoListJson,
+// class App extends Component {
+//   state = {
+//      todos: TodoListJson,
   
-  }
+//   }
 
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !==todoId)
-    }))
-  }
+//   deleteTodo = todoId => {
+//     this.setState(prevState => ({
+//       todos: prevState.todos.filter(todo => todo.id !==todoId)
+//     }))
+//   }
+
+//   render() {
+//     const { todos } = this.state;
+
+//     const totalTodoCount = todos.length;
+//     const completedTodoCount = todos.reduce((total, todo) =>
+//       (todo.completed ? total + 1 : total), 0,);
+
+//     return (
+//       <div className="App">
+//         <>
+//           <h1>Стан компонента</h1>
+//           <TodoList todos={todos} deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
+//           <span>Загальна кількість: {totalTodoCount}</span>
+//           <span>Кількість виконаниx: {completedTodoCount}</span>
+//         </>
+//       </div>
+//     )
+//   }
+// }
+
+class App extends Component {
 
   render() {
-    const { todos } = this.state;
-
-    const totalTodoCount = todos.length;
-    const completedTodoCount = todos.reduce((total, todo) => (todo.completed ? total + 1 : total), 0);
-
     return (
-      <div className="App">
-        <>
-          <h1>Стан компонента</h1>
-          <TodoList todos={todos} deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
-          <span>Загальна кількість: {totalTodoCount}</span>
-          <span>Кількість виконаниx: {completedTodoCount}</span>
-        </>
-      </div>
+    <div className="App">
+        <Forms />
+    </div>
     )
   }
 }
