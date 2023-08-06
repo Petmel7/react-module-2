@@ -3,6 +3,13 @@ import { Component } from "react";
 const INITIAL_STATE = {
     login: '',
     password: '',
+    agree: false,
+    gender: null
+}
+
+const Gender = {
+    MALE: 'male',
+    FEMALE: 'female',
 }
 
 export class RegistrationForm extends Component {
@@ -22,26 +29,56 @@ export class RegistrationForm extends Component {
     }
 
     handleChange = event => {
-        const { name, value } = event.target;
+        const { name, value, type } = event.target;
+
+        if (type === 'checkbox') {
+            return this.setState((prevState => ({
+                ...prevState, agree: event.target.checked
+            })));
+        }
         this.setState({ [name]: value });
     }
 
     render() {
 
-        const { login, password } = this.state;
+        const { login, password, agree, gender } = this.state;
 
         return (
             <form onSubmit={this.onSubmit}>
                 <label>
                     Login
-                    <input type="" name="login" onChange={this.handleChange} value={login}/>
+                    <input type="text"
+                        name="login"
+                        onChange={this.handleChange}
+                        value={login} />
                 </label>
+
                 <label>
                     Password
-                    <input type="" name="password" onChange={this.handleChange} value={password}/>
+                    <input type="text"
+                        name="password"
+                        onChange={this.handleChange}
+                        value={password} />
                 </label>
+
+                <div>
+                    <input type="checkbox"
+                        name="agree"
+                        checked={agree}
+                        onChange={this.handleChange} />
+                </div>
+
+                <div>
+                    <input type="radio"
+                        name="gender"
+                        checked={gender === Gender.MALE}
+                        value={Gender.MALE}
+                        onChange={this.handleChange} />
+                </div>
+                
                 <button type="submit">SUBMIT</button>
-                <button type="button" onReset={this.onReset}>RESET</button>
+
+                <button type="button" onClick={this.onReset}>RESET</button>
             </form>
         )
     }
