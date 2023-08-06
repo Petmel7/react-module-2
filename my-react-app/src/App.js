@@ -2,6 +2,7 @@ import './App.css';
 import './components/ColorPicker.css';
 import React, { Component } from 'react';
 import { Forms } from './components/form/Forms';
+import { RegistrationForm } from './components/form/RegistrationForm.js';
 // import TodoList from './components/TodoList.js';
 // import TodoListJson from '../src/components/TodoList.json';
 
@@ -88,7 +89,8 @@ class App extends Component {
   render() {
     return (
     <div className="App">
-        <Forms />
+        {/* <Forms /> */}
+        <RegistrationForm/>
     </div>
     )
   }
