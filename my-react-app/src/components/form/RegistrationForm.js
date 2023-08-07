@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     login: '',
     password: '',
     agree: false,
-    gender: null
+    gender: null,
+    age: ''
 }
 
 const Gender = {
@@ -41,7 +42,7 @@ export class RegistrationForm extends Component {
 
     render() {
 
-        const { login, password, agree, gender } = this.state;
+        const { login, password, agree, gender, age } = this.state;
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -68,13 +69,31 @@ export class RegistrationForm extends Component {
                         onChange={this.handleChange} />
                 </div>
 
-                <div>
+                <label>
+                    Male
                     <input type="radio"
                         name="gender"
                         checked={gender === Gender.MALE}
                         value={Gender.MALE}
                         onChange={this.handleChange} />
-                </div>
+                </label>
+
+                <label>
+                    Female
+                    <input type="radio"
+                        name="gender"
+                        checked={gender === Gender.FEMALE}
+                        value={Gender.FEMALE}
+                        onChange={this.handleChange} />
+                </label>
+
+                <label>
+                    <select name="age" value={age} onChange={this.handleChange}>
+                        <option value='' disabled={age !== ''}></option>
+                        <option value='25'>25</option>
+                        <option value='15'>15</option>
+                    </select>
+                </label>
                 
                 <button type="submit">SUBMIT</button>
 
