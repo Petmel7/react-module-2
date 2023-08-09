@@ -52,37 +52,37 @@ import { RegistrationForm } from './components/form/RegistrationForm.js';
 // }
 
 
-class App extends Component {
-  state = {
-     todos: TodoListJson,
+// class App extends Component {
+//   state = {
+//      todos: TodoListJson,
   
-  }
+//   }
 
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !==todoId)
-    }))
-  }
+//   deleteTodo = todoId => {
+//     this.setState(prevState => ({
+//       todos: prevState.todos.filter(todo => todo.id !==todoId)
+//     }))
+//   }
 
-  render() {
-    const { todos } = this.state;
+//   render() {
+//     const { todos } = this.state;
 
-    const totalTodoCount = todos.length;
-    const completedTodoCount = todos.reduce((total, todo) =>
-      (todo.completed ? total + 1 : total), 0,);
+//     const totalTodoCount = todos.length;
+//     const completedTodoCount = todos.reduce((total, todo) =>
+//       (todo.completed ? total + 1 : total), 0,);
 
-    return (
-      <div className="App">
-        <>
-          <h1>Стан компонента</h1>
-          <TodoList todos={todos} deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
-          <span>Загальна кількість: {totalTodoCount}</span>
-          <span>Кількість виконаниx: {completedTodoCount}</span>
-        </>
-      </div>
-    )
-  }
-}
+//     return (
+//       <div className="App">
+//         <>
+//           <h1>Стан компонента</h1>
+//           <TodoList todos={todos} deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
+//           <span>Загальна кількість: {totalTodoCount}</span>
+//           <span>Кількість виконаниx: {completedTodoCount}</span>
+//         </>
+//       </div>
+//     )
+//   }
+// }
 
 class App extends Component {
 
