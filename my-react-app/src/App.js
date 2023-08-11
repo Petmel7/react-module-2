@@ -64,6 +64,10 @@ class App extends Component {
     }))
   }
 
+  formSubmitHandler = data => {
+    console.log(data);
+  }
+
   render() {
     const { todos } = this.state;
 
@@ -76,27 +80,7 @@ class App extends Component {
         <>
           <h1>Стан компонента</h1>
 
-          {/* <form onSubmit={this.handleSubmit}>
-            <label>
-              Імя
-              <input type='text'
-                name='name'
-                value={this.state.name}
-                onChange={this.handleChange} />
-            </label>
-
-            <label>
-              Прізвище
-              <input type='text'
-                name='tag'
-                value={this.state.tag}
-                onChange={this.handleChange} />
-            </label>
-
-            <button type='submit'>Відправити</button>
-          </form> */}
-
-          <TodoForm />
+          <TodoForm onSubmit={this.formSubmitHandler}/>
           <TodoList todos={todos}
             deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
 
