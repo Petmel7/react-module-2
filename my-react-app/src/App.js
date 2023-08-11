@@ -1,8 +1,10 @@
 import './App.css';
 import './components/ColorPicker.css';
 import React, { Component } from 'react';
+
 // import { Forms } from './components/form/Forms';
 // import { RegistrationForm } from './components/form/RegistrationForm.js';
+
 import TodoList from './components/TodoList.js';
 import TodoListJson from '../src/components/TodoList.json';
 import { TodoForm } from './components/TodoForm.js';
@@ -66,6 +68,12 @@ class App extends Component {
 
   formSubmitHandler = data => {
     console.log(data);
+  }
+
+  toggleCompleted = togleId => {
+    this.setState(({ todos }) => ({
+      
+    }))
   }
 
   render() {

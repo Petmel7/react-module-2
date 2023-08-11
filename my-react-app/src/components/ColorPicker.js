@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { ColorPickerOptions } from '../App.js';
+import classNames from 'classnames';
 
 export class ColorPicker extends Component {
 
@@ -23,10 +24,18 @@ export class ColorPicker extends Component {
                 <div>
                     {ColorPickerOptions.map(({ label, color }, index) => (
 
-                        <button className={`ColorPicker-option 
-                            ${index === activeOptionIdx &&
-                                'ColorPicker-option-ative'}`}
-                                    key={label}
+                        // <button className={`ColorPicker-option
+                        //     ${index === activeOptionIdx &&
+                        //         'ColorPicker-option-ative'}`}
+                        //             key={label}
+                        //     style={{ backgroundColor: color }}
+                        //     onClick={() => this.setActiveIdx(index)}>
+                        // </button>
+                        
+                        <button className={classNames('ColorPicker-option', {
+                            'ColorPicker-option-ative': activeOptionIdx === index
+                        })} 
+                            key={label}
                             style={{ backgroundColor: color }}
                             onClick={() => this.setActiveIdx(index)}>
                         </button>

@@ -1,12 +1,14 @@
 import { Component } from "react";
 import shortid from "shortid";
+// import classNames from 'classnames';
 
 export class TodoForm extends Component {
 
     state = {
         name: '',
         tag: '',
-        experience: 'junior'
+        experience: 'junior',
+        license: false
     }
 
     handleChange = event => {
@@ -24,6 +26,11 @@ export class TodoForm extends Component {
 
     reset = () => {
         this.setState({ name: '', tag: '' });
+    }
+
+    handleLicenseChange = event => {
+        console.log(event.currentTarget.checked)
+        this.setState({license: event.currentTarget.checked})
     }
 
     nameInputId = shortid.generate();
@@ -74,7 +81,15 @@ export class TodoForm extends Component {
                         checked={this.state.experience === "senior"} />Senior
                 </label>
 
-                <button type='submit'>Відправити</button>
+                <label>
+                    <input type="checkbox"
+                        name="license"
+                        checked={this.state.license}
+                        onChange={this.handleLicenseChange} />Згідний
+                </label>
+
+                <button type='submit'
+                    disabled={!this.state.license}>Відправити</button>
             </form>
         )
     }

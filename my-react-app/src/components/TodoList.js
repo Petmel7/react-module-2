@@ -10,6 +10,11 @@ const TodoList = ({ todos, deleteTodo }) => { // Приймайте todos як �
             <button onClick={() => deleteTodo(id)}>Delete</button>
         </li>
       ))}
+
+      <input type="checkbox"
+        className="TodoList-checkbox"
+        checked={completed}
+        onChange={ } />
     </ul>
   )
 }
