@@ -8,6 +8,8 @@ import React, { Component } from 'react';
 import TodoList from './components/TodoList.js';
 import TodoListJson from '../src/components/TodoList.json';
 import { TodoForm } from './components/TodoForm.js';
+import { TodoEditor } from './components/TodoEditor.js';
+import shortid from 'shortid';
 
 // import { Dropdawn } from './components/Dropdawn.js';
 // import { ColorPicker } from './components/ColorPicker';
@@ -60,6 +62,13 @@ class App extends Component {
       todos: TodoListJson,
   }
 
+  addTodo = text => {
+    console.log(text)
+    const todo = {
+      id: shortid.generate()
+    }
+  }
+
   deleteTodo = todoId => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo.id !==todoId)
@@ -72,7 +81,10 @@ class App extends Component {
 
   toggleCompleted = togleId => {
     this.setState(({ todos }) => ({
-      
+      todos: todos.map(todo =>
+        todo.id === togleId ?
+          { ...todo, completed: !todo.completed }
+          : todo,)
     }))
   }
 
@@ -88,9 +100,13 @@ class App extends Component {
         <>
           <h1>Стан компонента</h1>
 
-          <TodoForm onSubmit={this.formSubmitHandler}/>
+          <TodoForm onSubmit={this.formSubmitHandler} />
+          
           <TodoList todos={todos}
-            deleteTodo={this.deleteTodo} /> {/* Передайте todos як пропс до TodoList */}
+            deleteTodo={this.deleteTodo}
+            toggleCompleted={this.toggleCompleted} /> {/* Передайте todos як пропс до TodoList */}
+          
+          <TodoEditor onSubmit={ this.addTodo} />
 
           <span>Загальна кількість: {totalTodoCount}</span>
           <span>Кількість виконаниx: {completedTodoCount}</span>
