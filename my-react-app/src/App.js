@@ -9,6 +9,7 @@ import TodoList from './components/TodoList.js';
 import TodoListJson from '../src/components/TodoList.json';
 import { TodoForm } from './components/TodoForm.js';
 import { TodoEditor } from './components/TodoEditor.js';
+import TodoFilter from './components/TodoFilter.js';
 import shortid from 'shortid';
 
 // import { Dropdawn } from './components/Dropdawn.js';
@@ -99,12 +100,37 @@ class App extends Component {
     this.setState({filter: event.currentTarget.value})
   }
 
+  getVisibleTodos = () => {
+
+    const {filter, todos} = this.state
+    const normalizeFilter = filter.toLowerCase()
+    
+    return todos.filter(todo => 
+      todo.text.toLowerCase().includes(normalizeFilter))
+  }
+
+  deleteAllTodos = () => {
+    const { todos } = this.state;
+    const todosWithoutCompleted = todos.filter(todo => !todo.completed);
+
+    this.setState({
+        todos: todosWithoutCompleted
+    });
+  }
+  
+  calculateCompletedTodos = () => {
+    const { todos } = this.state;
+
+    return todos.reduce((total, todo) =>
+      (todo.completed ? total + 1 : total), 0,);
+  }
+  
   render() {
     const { todos, filter } = this.state;
-
     const totalTodoCount = todos.length;
-    const completedTodoCount = todos.reduce((total, todo) =>
-      (todo.completed ? total + 1 : total), 0,);
+    const completedTodoCount = this.calculateCompletedTodos();
+
+    const visibleTodosFilter = this.getVisibleTodos();
 
     return (
       <div className="App">
@@ -113,13 +139,15 @@ class App extends Component {
 
           <TodoForm onSubmit={this.formSubmitHandler} />
           
-          <TodoList todos={todos}
+          <TodoList todos={visibleTodosFilter}
             deleteTodo={this.deleteTodo}
             toggleCompleted={this.toggleCompleted} /> {/* Передайте todos як пропс до TodoList */}
           
           <TodoEditor onSubmit={this.addTodo} />
+
+          <TodoFilter value={filter} onChange={this.changeFilter} />
           
-          <input type='text' value={filter} onChange={this.changeFilter}/>
+          <button onClick={this.deleteAllTodos}>Видалити все</button>
 
           <span>Загальна кількість: {totalTodoCount}</span>
           <span>Кількість виконаниx: {completedTodoCount}</span>
