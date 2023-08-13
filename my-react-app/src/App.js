@@ -59,15 +59,22 @@ import shortid from 'shortid';
 
 class App extends Component {
   state = {
-      todos: TodoListJson,
+    todos: TodoListJson,
+    filter:''
   }
 
   addTodo = text => {
-    console.log(text)
+    
     const todo = {
-      id: shortid.generate()
-    }
-  }
+      id: shortid.generate(),
+      text,
+      completed: false,
+    };
+
+    this.setState(({ todos }) => ({
+      todos: [todo, ...todos]
+    }));
+  };
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
@@ -79,17 +86,21 @@ class App extends Component {
     console.log(data);
   }
 
-  toggleCompleted = togleId => {
+  toggleCompleted = todoId => {
     this.setState(({ todos }) => ({
       todos: todos.map(todo =>
-        todo.id === togleId ?
+        todo.id === todoId ?
           { ...todo, completed: !todo.completed }
           : todo,)
     }))
   }
 
+  changeFilter = event => {
+    this.setState({filter: event.currentTarget.value})
+  }
+
   render() {
-    const { todos } = this.state;
+    const { todos, filter } = this.state;
 
     const totalTodoCount = todos.length;
     const completedTodoCount = todos.reduce((total, todo) =>
@@ -106,7 +117,9 @@ class App extends Component {
             deleteTodo={this.deleteTodo}
             toggleCompleted={this.toggleCompleted} /> {/* Передайте todos як пропс до TodoList */}
           
-          <TodoEditor onSubmit={ this.addTodo} />
+          <TodoEditor onSubmit={this.addTodo} />
+          
+          <input type='text' value={filter} onChange={this.changeFilter}/>
 
           <span>Загальна кількість: {totalTodoCount}</span>
           <span>Кількість виконаниx: {completedTodoCount}</span>

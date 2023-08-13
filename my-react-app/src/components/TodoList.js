@@ -1,4 +1,6 @@
 import React from "react";
+import './TodoList.css';
+
 
 const TodoList = ({ todos, deleteTodo, toggleCompleted }) => { // Приймайте todos як пропс
 
@@ -6,7 +8,7 @@ const TodoList = ({ todos, deleteTodo, toggleCompleted }) => { // Приймай
     <ul>
       {todos.map(({ id, text, completed }) => (
         <li key={id}>
-            <p>{text}</p>
+            <p className={completed ? 'crossed-out' : ''}>{text}</p>
           <button onClick={() => deleteTodo(id)}>Delete</button>
           
           <input type="checkbox"

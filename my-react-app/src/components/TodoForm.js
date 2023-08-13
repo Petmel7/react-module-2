@@ -7,7 +7,7 @@ export class TodoForm extends Component {
     state = {
         name: '',
         tag: '',
-        experience: 'junior',
+        experience: '',
         license: false
     }
 
