@@ -145,7 +145,8 @@ class App extends Component {
           
           <TodoEditor onSubmit={this.addTodo} />
 
-          <TodoFilter value={filter} onChange={this.changeFilter} />
+          <TodoFilter value={filter}
+            onChange={this.changeFilter} />
           
           <button onClick={this.deleteAllTodos}>Видалити все</button>
 
