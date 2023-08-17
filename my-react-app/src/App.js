@@ -60,7 +60,7 @@ import shortid from 'shortid';
 
 class App extends Component {
   state = {
-    todos: TodoListJson,
+    todos: [],
     filter:''
   }
 
@@ -124,8 +124,29 @@ class App extends Component {
     return todos.reduce((total, todo) =>
       (todo.completed ? total + 1 : total), 0,);
   }
+
+  componentDidMount() { 
+    console.log('App componentDidMount')
+
+    const todos = localStorage.getItem('todos')
+    const parsedTodos = JSON.parse(todos)
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate')
+
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+    }
+  } 
   
   render() {
+    console.log('Render')
+
     const { todos, filter } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
