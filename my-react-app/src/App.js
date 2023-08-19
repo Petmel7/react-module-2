@@ -1,4 +1,5 @@
 import './App.css';
+
 import './components/ColorPicker.css';
 import React, { Component } from 'react';
 
@@ -6,7 +7,7 @@ import React, { Component } from 'react';
 // import { RegistrationForm } from './components/form/RegistrationForm.js';
 
 import TodoList from './components/TodoList.js';
-import TodoListJson from '../src/components/TodoList.json';
+// import TodoListJson from '../src/components/TodoList.json';
 import { TodoForm } from './components/TodoForm.js';
 import { TodoEditor } from './components/TodoEditor.js';
 import TodoFilter from './components/TodoFilter.js';
@@ -159,20 +160,22 @@ class App extends Component {
           <h1>Стан компонента</h1>
 
           <TodoForm onSubmit={this.formSubmitHandler} />
-          
-          <TodoList todos={visibleTodosFilter}
-            deleteTodo={this.deleteTodo}
-            toggleCompleted={this.toggleCompleted} /> {/* Передайте todos як пропс до TodoList */}
-          
-          <TodoEditor onSubmit={this.addTodo} />
 
           <TodoFilter value={filter}
             onChange={this.changeFilter} />
           
-          <button onClick={this.deleteAllTodos}>Видалити все</button>
+          <TodoEditor onSubmit={this.addTodo} />
+          
+          <TodoList todos={visibleTodosFilter}
+            deleteTodo={this.deleteTodo}
+            toggleCompleted={this.toggleCompleted} /> {/* Передайте todos як пропс до TodoList */}
 
-          <span>Загальна кількість: {totalTodoCount}</span>
-          <span>Кількість виконаниx: {completedTodoCount}</span>
+          <h3>Загальна кількість: {totalTodoCount}</h3>
+          <h3>Кількість виконаниx: {completedTodoCount}</h3>
+
+          <button
+            onClick={this.deleteAllTodos}>
+            Видалити все</button>
         </>
       </div>
     )

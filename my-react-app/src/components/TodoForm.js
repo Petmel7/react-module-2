@@ -39,7 +39,9 @@ export class TodoForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor={this.nameInputId}>
+                
+                <div className="Form">
+                    <label htmlFor={this.nameInputId}>
                     Імя
                     <input type='text'
                         name='name'
@@ -56,10 +58,12 @@ export class TodoForm extends Component {
                         onChange={this.handleChange}
                         id={this.tagInputId} />
                 </label>
+            </div>
 
-                <p>Ваш рівень</p>
+                <h3>Ваш рівень</h3>
 
-                <label>
+            <div className="Radio">
+                    <label>
                     <input type="radio"
                         name="experience"
                         value="junior"
@@ -87,6 +91,7 @@ export class TodoForm extends Component {
                         checked={this.state.license}
                         onChange={this.handleLicenseChange} />Згідний
                 </label>
+            </div>
 
                 <button type='submit'
                     disabled={!this.state.license}>Відправити</button>

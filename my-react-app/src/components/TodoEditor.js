@@ -23,14 +23,15 @@ export class TodoEditor extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
+                <div className="Form">
+                    <label>
                     Додати
-                    <textarea
-                        value={this.state.message}
-                        onChange={this.hangleChange}>
-                    </textarea>
-                </label>
-
+                        <textarea
+                            value={this.state.message}
+                            onChange={this.hangleChange}>
+                        </textarea>
+                    </label>
+                </div>
                 <button type="submit">Зберегти</button>
             </form>
         )
