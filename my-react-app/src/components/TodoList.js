@@ -1,6 +1,7 @@
 import React from "react";
 import './TodoList.css';
-
+import IconButton from '../components/iconButton/IconButton.js';
+// import { ReactComponent as AddIcon } from '../icons/bluefrog23_Peppermint_Candy.svg';
 
 const TodoList = ({ todos, deleteTodo, toggleCompleted }) => { // Приймайте todos як пропс
 
@@ -16,8 +17,13 @@ const TodoList = ({ todos, deleteTodo, toggleCompleted }) => { // Приймай
                 checked={completed}
                 onChange={() => toggleCompleted(id)} />
           
-                <button onClick={() => deleteTodo(id)}>Delete</button>
-           </div>
+            <IconButton
+              onClick={() => deleteTodo(id)}
+              aria-label='Добавити todo'>Delete</IconButton>
+            {/* <AddIcon /> */}
+            
+                {/* <button onClick={() => deleteTodo(id)}>Delete</button> */}
+            </div>
         </li>
       ))}
     </ul>
