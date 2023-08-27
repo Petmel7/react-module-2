@@ -1,20 +1,17 @@
-import { Component } from 'react';
+// import { useState } from 'react';
 import { ColorPickerOptions } from '../App.js';
-import classNames from 'classnames';
+import React, { useState } from 'react';
+// import classNames from 'classnames';
 
-export class ColorPicker extends Component {
+export default function ColorPicker() {
 
-    state = {
-        activeOptionIdx: 0,
+    const [activeOptionIdx, setActiveOptionIdx] = useState(0);
+
+    const makeOptionClassName = index => {
+        return `ColorPicker-option 
+                    ${index === activeOptionIdx &&
+                        'ColorPicker-option-ative'}`;
     }
-
-    setActiveIdx = index => {
-        this.setState({activeOptionIdx: index});
-    }
-
-    render() {
-
-        const { activeOptionIdx } = this.state
         const { label } = ColorPickerOptions[activeOptionIdx];
 
         return (
@@ -23,21 +20,11 @@ export class ColorPicker extends Component {
                 <h3>Color: {label}</h3>
                 <div>
                     {ColorPickerOptions.map(({ label, color }, index) => (
-
-                        // <button className={`ColorPicker-option
-                        //     ${index === activeOptionIdx &&
-                        //         'ColorPicker-option-ative'}`}
-                        //             key={label}
-                        //     style={{ backgroundColor: color }}
-                        //     onClick={() => this.setActiveIdx(index)}>
-                        // </button>
                         
-                        <button className={classNames('ColorPicker-option', {
-                            'ColorPicker-option-ative': activeOptionIdx === index
-                        })} 
+                        <button className={(makeOptionClassName(index))} 
                             key={label}
                             style={{ backgroundColor: color }}
-                            onClick={() => this.setActiveIdx(index)}>
+                            onClick={() => setActiveOptionIdx(index)}>
                         </button>
                     ))}
                     
@@ -45,5 +32,4 @@ export class ColorPicker extends Component {
             </div>
         )
     }
-}
         
